@@ -1,0 +1,76 @@
+body {
+    font-family: 'Raleway' !important; 
+}
+.app-page {
+    display: none;
+    align-items: center;
+    flex-direction: column;   
+    position: absolute;
+    width: 100vw;
+    height: 100vh !important;
+    z-index: 1;
+}
+nav {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+nav > .menu {
+    position: absolute;
+    top: 23px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+}
+nav > .clock {
+    position: absolute;
+    top: 23px;
+    left: 10px;
+    margin: 0;
+    padding: 0;
+    width: 20%;
+}
+nav > h4 {
+    text-transform: uppercase;
+    color: #8d8d8d;
+}
+nav > .menu > i {
+    padding: 5px;
+    color: #fce300;
+    font-size: 1.6rem;
+    cursor: pointer;
+    z-index: 90;
+}
+.notification-counter {
+    color: #ff0000;
+    font-size: 1.1rem;
+}   
+.app-page-logo {
+    margin-top: 20px;
+    width: 30%;
+}
+#clock > span {
+    font-size: 1.5rem;
+    padding: 30px;
+}
+.addBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 80px;
+    position: fixed;
+    top: 80%;
+    left: 72%;
+    padding: 5px;
+    color: #ffffff;
+    background-color: #fce300;
+    font-size: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 90;
+}

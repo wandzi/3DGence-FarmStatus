@@ -19,3 +19,9 @@ You're about to initialize a Firebase project in this directory:
 
   C:\Users\Ania\Desktop\www\Farm Status - 3DGence
 
+[debug] [2019-11-11T14:26:57.372Z] Error: kill ENOSYS
+    at process.kill (internal/process/per_thread.js:189:13)
+    at process.listener (C:\Users\Ania\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\signal-exit\index.js:95:15)
+    at process.emit (events.js:210:5)
+[error] 
+[error] Error: An unexpected error has occurred.
