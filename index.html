@@ -22,12 +22,14 @@
   <link rel="stylesheet" href="App/css/normalize.css">
   <link rel="stylesheet" href="App/css/skeleton.css">
   <link rel="stylesheet" href="App/css/welcomepage.css">
+  <link rel="stylesheet" href="App/css/index.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="favicon.png">
+  
 
 </head>
 <body>
@@ -37,14 +39,33 @@
 
       <section class="welcome-page" id="welcome-page">
         <img class="logo" alt="logo" src="App/img/logo.png"> 
-        <button class="login" id="login">Login</button>
+        <button class="login" id="loginBtn">Login</button>
         <div class="version">version 0.0.1</div>
       </section>
-
-
+  <!-- Login Modal
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div id="loginModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content modal-content-login">
+          <span class="close" id="closeLoginModalBtn">&times;</span>
+            <div class="login-container" id="loginContainer">
+             asd
+            </div>
+          </div>
+      </div>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <script src="https://kit.fontawesome.com/d2d4f64174.js"></script>
+<script src="App/js/modals.js"></script>
+<script src="App/js/auth.js"></script>
 <script src="App/js/app.js"></script>
+<!-- Firebase -->
+<!-- Firebase config-->
+<script src="App/js/firebaseConfig.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+</script>
 </body>
 </html>
