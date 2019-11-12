@@ -1,7 +1,9 @@
+import {onSuccesAuthorization} from '../Router/router';
+
 //Checking authentication status
 auth.onAuthStateChanged(user => {
     if (user) {
-        console.log('user logged in:', user);
+        //Login succesfully
     } else {
         console.log('user logged out:', user);
     }
@@ -17,13 +19,9 @@ loginForm.addEventListener('submit', (e) => {
           userPassword = document.querySelector("#user-password").value;
 
     auth.signInWithEmailAndPassword(userEmail, userPassword)
-        .then(user => {
-            // Enter to the App
-            window.location.replace("app.html");
-        })
+        .then()
         .catch(error => {
             // Catching error message to UI
             document.querySelector(".error").innerHTML = error.message;
         });
 });
-
