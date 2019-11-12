@@ -15,6 +15,5 @@ loginForm.addEventListener('submit', (e) => {
             // Catching error message to UI
             document.querySelector(".error").innerHTML = error.message;
         });
-
 });
 

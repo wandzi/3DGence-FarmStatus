@@ -64,8 +64,8 @@ nav > .menu > i {
     height: 80px;
     width: 80px;
     position: fixed;
-    top: 80%;
-    left: 72%;
+    bottom: 25px;
+    right: 25px;
     padding: 5px;
     color: #ffffff;
     background-color: #fce300;
