@@ -26,41 +26,57 @@ let homePage = `
     </div>
   `;
 
-let app = `
+let application = `
   <nav>
     <div id="clock" class="clock">
       <span id="hour"></span>
     </div>
     <img alt="app-logo" class="app-page-logo" src="App/img/logo.png">
     <div class="menu">
-        <i class="fa fa-bell" id="notificationModalBtn">              
-          <span class="notification-counter" id="notificationCounterContainer"></span>
-        </i> 
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      </div>
+      <i class="fa fa-bell" id="notificationModalBtn">              
+        <span class="notification-counter" id="notificationCounterContainer"></span>
+      </i> 
+      <i class="fa fa-sign-out" aria-hidden="true" id="logoutBtn"></i>
+    </div>
   </nav> 
   <i class="fa fa-plus addBtn" id="addPrinterStatusBtn"></i>
   `;
 
 routes = {
 '/': homePage,
-'/app': app,
+'/application': application,
 };
 
 let root = document.querySelector("#app");
 root.innerHTML = routes[window.location.pathname];
 
-
 // History
-function onSuccesAuthorization(pathName){
+let changingPage = (pathName) => {
     window.history.pushState(
       {}, 
       pathName,
       window.location.origin + pathName
     );
-    contentDiv.innerHTML = routes[pathName];
+    root.innerHTML = routes[pathName];
   }
 
-  window.onpopstate = () => {
-    contentDiv.innerHTML = routes[window.location.pathname];
+//Checking authentication status
+auth.onAuthStateChanged(user => {
+  if (user) {
+    changingPage('/application');
+    window.onpopstate = () => {
+      root.innerHTML = routes[window.location.pathname];
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      let script = document.createElement('script');
+      script.setAttribute('src','App/js/logout.js');
+      document.body.appendChild(script);
+    });
+
+  } else {
+    changingPage('/');
+    window.onpopstate = () => {
+      root.innerHTML = routes[window.location.pathname];
+    }
   }
+});
