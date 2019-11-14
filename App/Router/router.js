@@ -40,6 +40,9 @@ let application = `
     </div>
   </nav> 
   <i class="fa fa-plus addBtn" id="addPrinterStatusBtn"></i>
+  <div class="printers-status" id="printers-status-list">
+
+  </div>      
   `;
 
 routes = {
@@ -51,30 +54,44 @@ let root = document.querySelector("#app");
 root.innerHTML = routes[window.location.pathname];
 
 // History
-let changingPage = (pathName) => {
-    window.history.pushState(
-      {}, 
-      pathName,
-      window.location.origin + pathName
-    );
-    root.innerHTML = routes[pathName];
-  }
+let changeRoute = (pathName) => {
+
+  window.history.pushState(
+    {}, 
+    pathName,
+    window.location.origin + pathName
+  );
+  root.innerHTML = routes[pathName];
+  
+}
 
 //Checking authentication status
 auth.onAuthStateChanged(user => {
+
   if (user) {
-    console.log(user);
-    changingPage('/application');
+
+    let appendScript = (fileName) => {
+      let script = document.createElement('script');
+      script.setAttribute('src',`App/js/${fileName}.js`);
+      document.body.appendChild(script);
+    }
+
+    changeRoute('/application');
+    appendScript('clock');
+    appendScript('getData');
+    appendScript('app');
+    appendScript('logout');
+
     window.onpopstate = () => {
       root.innerHTML = routes[window.location.pathname];
     }
-    let script = document.createElement('script');
-    script.setAttribute('src','App/js/logout.js');
-    document.body.appendChild(script);
+
   } else {
-    changingPage('/');
+
+    changeRoute('/');
     window.onpopstate = () => {
       root.innerHTML = routes[window.location.pathname];
     }
+
   }
 });
