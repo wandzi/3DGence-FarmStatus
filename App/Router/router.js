@@ -63,16 +63,14 @@ let changingPage = (pathName) => {
 //Checking authentication status
 auth.onAuthStateChanged(user => {
   if (user) {
+    console.log(user);
     changingPage('/application');
     window.onpopstate = () => {
       root.innerHTML = routes[window.location.pathname];
     }
-    document.addEventListener("DOMContentLoaded", function() {
-      let script = document.createElement('script');
-      script.setAttribute('src','App/js/logout.js');
-      document.body.appendChild(script);
-    });
-
+    let script = document.createElement('script');
+    script.setAttribute('src','App/js/logout.js');
+    document.body.appendChild(script);
   } else {
     changingPage('/');
     window.onpopstate = () => {

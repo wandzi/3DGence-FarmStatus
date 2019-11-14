@@ -9,6 +9,9 @@
     background-color: #000000; 
     background-color: #00000066; 
   }
+.open{
+    display: block;
+}
 .modal-content {
     display: flex;
     flex-direction: column;
