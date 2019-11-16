@@ -40,9 +40,43 @@ let application = `
     </div>
   </nav> 
   <i class="fa fa-plus addBtn" id="addPrinterStatusBtn"></i>
-  <div class="printers-status" id="printers-status-list">
 
-  </div>      
+  <div class="printers-status" id="printers-status-list">
+    <!-- Genereted UI printers list from DataBase -->
+  </div>  
+
+  <!-- Modals -->
+  <div id="printerModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModalBtn">&times;</span>
+      <div class="container">
+        <form name="addPrinterForm" class="addPrinterForm" id="addPrinterForm">
+          <label for="printer_model" id="addPrintersName">Model drukarki</label>
+
+          <select name="printerSelect">
+            <option selected hidden>Wybierz model drukarki</option>
+            <option>One</option>
+            <option>Double P255</option>
+            <option>F340 - Pro</option>
+            <option>F340 - HT</option>
+            <option>F340 - HT Max</option>
+            <option>FormLab Form2</option>
+          </select>
+
+          <label >Numer drukarki</label>
+          <input type="number" id="printerNumber" name="lastname">
+
+          <label >Nazwa wydruku</label>
+          <input type="text" id="printingFileName" name="lastname">
+
+          <label>Czas druku</label>
+          <input type="text" id="printingFileTime" name="quantity">    
+
+          <input type="submit" class="addPrinterToDatabaseBtn" id="addPrinterToDatabaseBtn" value="Dodaj">
+        </form>
+      </div>  
+    </div>
+  </div>
   `;
 
 routes = {
@@ -70,17 +104,19 @@ auth.onAuthStateChanged(user => {
 
   if (user) {
 
-    let appendScript = (fileName) => {
+    let appendScript = (path) => {
       let script = document.createElement('script');
-      script.setAttribute('src',`App/js/${fileName}.js`);
+      script.setAttribute('src',`${path}`);
       document.body.appendChild(script);
     }
 
     changeRoute('/application');
-    appendScript('clock');
-    appendScript('getData');
-    appendScript('app');
-    appendScript('logout');
+    appendScript('App/js/clock.js');
+    appendScript('App/js/appModals.js');
+    appendScript('App/js/Firebase/getData.js');
+    appendScript('App/js/Firebase/pushData.js');
+    appendScript('App/js/Firebase/logout.js');
+    appendScript('App/js/app.js');
 
     window.onpopstate = () => {
       root.innerHTML = routes[window.location.pathname];

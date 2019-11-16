@@ -1,6 +1,6 @@
 const printersList = document.querySelector('#printers-status-list');
 
-//Generating UI printers list 
+//Generating UI printers list from DataBase
 const setupPrintersList = (data) => {
     let list = '';
     data.forEach(doc => {

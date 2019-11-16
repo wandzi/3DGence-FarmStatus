@@ -1,0 +1,187 @@
+.printers-status {
+    width: 95%;
+}
+
+.printer-container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15px;
+    padding: 20px;
+    background-color: #62c0ff;
+    border: 0.5px solid #62c0ff;
+    border-radius: 10px;
+}
+.one-printer {
+    background-color: #0079bf;
+    border: 0.5px solid #0079bf;    
+}
+.double-printer {
+    background-color: #c377e0;
+    border: 0.5px solid #c377e0;
+}
+.f340-pro-printer{
+    background-color: #61bd4f;
+    border: 0.5px solid #61bd4f;    
+}
+.f340-ht-printer{
+    background-color: #f2d600;
+    border: 0.5px solid #f2d600;    
+}
+.f340-htmax-printer{
+    background-color: #eb5a46;
+    border: 0.5px solid #eb5a46;    
+}
+.formlab-printer{
+    background-color: #51e898;
+    border: 0.5px solid #51e898;    
+}
+.delete-printer{
+    position: relative;
+    top: 1%;
+    right: -50%;
+    line-height: 5px;
+    font-size: 3rem;
+    z-index: 10;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+.bigger-font {
+    font-size: 17px;
+}
+
+.smaller-font {
+    font-size: 13px;
+}
+
+.printer-container > p {
+    color: #FFFFFF;
+    margin-bottom: 1px;
+}
+
+.printer-container > p:last-child {
+    margin-top: 10px;
+}
+.w3-light-grey {
+    margin-top: 10px;
+    width: 100%;
+}
+.w3-blue {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+/* ADD PRINTER MODAL */
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 2; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: #000000; 
+    background-color: #00000066; 
+    
+  }
+  
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fefefe;
+    text-align: center;
+    margin: 15% auto; 
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%; 
+    border-radius: 10px;
+}
+
+.modal-content > h4 {
+margin-top: -10px !important;
+margin-bottom: 20px !important;
+}
+
+.addPrinterForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+select, input {
+    width: 80%;
+}
+
+label {
+    margin-top: 15px;
+}
+
+.hours {
+    width: 300px;
+}
+
+.addBtn {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.close {
+    position: relative;
+    top: 1%;
+    right: -40%;
+    margin: 0;
+    padding: 0;
+    color: #aaa;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.failed-alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    background-color: #ff0000;
+    border: 0.5px solid #ff0000;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.succes-alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    height: 40px;
+    margin-top: 10px;
+    background-color: #00be00;
+    border: 0.5px solid #00be00;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.delete-printer {
+    cursor: pointer;
+}
+
+.addPrinterToDatabaseBtn {
+    width: 40%;
+    margin-top: 40px;
+}

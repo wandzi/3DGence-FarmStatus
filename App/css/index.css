@@ -10,7 +10,7 @@
     background-color: #00000066; 
   }
 .open{
-    display: block;
+    display: block !important;
 }
 .modal-content {
     display: flex;

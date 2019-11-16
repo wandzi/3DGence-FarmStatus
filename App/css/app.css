@@ -72,5 +72,5 @@ nav > .menu > i {
     font-size: 2.5rem;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 90;
+    z-index: 1;
 }
