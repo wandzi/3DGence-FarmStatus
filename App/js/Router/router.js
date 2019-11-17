@@ -70,7 +70,7 @@ let application = `
           <input type="text" id="printingFileName" name="lastname">
 
           <label>Czas druku</label>
-          <input type="text" id="printingFileTime" name="quantity">    
+          <input type="number" id="printingFileTime" name="quantity">    
 
           <input type="submit" class="addPrinterToDatabaseBtn" id="addPrinterToDatabaseBtn" value="Dodaj">
         </form>
