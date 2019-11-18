@@ -70,7 +70,7 @@ nav > .menu > i {
     height: 80px;
     width: 80px;
     position: fixed;
-    bottom: 25px;
+    bottom: 1px;
     right: 25px;
     padding: 5px;
     color: #ffffff;
@@ -92,4 +92,50 @@ nav > .menu > i {
     border: 0.5px solid #00be00;
     color: #FFFFFF;
     border-radius: 10px;
+}
+
+.one-printer {
+    background-color: #0079bf;
+    border: 0.5px solid #0079bf;    
+}
+.double-printer {
+    background-color: #c377e0;
+    border: 0.5px solid #c377e0;
+}
+.f340-pro-printer{
+    background-color: #61bd4f;
+    border: 0.5px solid #61bd4f;    
+}
+.f340-ht-printer{
+    background-color: #f2d600;
+    border: 0.5px solid #f2d600;    
+}
+.f340-htmax-printer{
+    background-color: #eb5a46;
+    border: 0.5px solid #eb5a46;    
+}
+.formlab-printer{
+    background-color: #51e898;
+    border: 0.5px solid #51e898;    
+}
+.bigger-font {
+    font-size: 17px;
+}
+
+.smaller-font {
+    font-size: 13px;
+}
+
+.printer-container > p {
+    color: #FFFFFF;
+    margin-bottom: 1px;
+}
+.w3-light-grey {
+    margin-top: 10px;
+    width: 100%;
+}
+.w3-blue {
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
