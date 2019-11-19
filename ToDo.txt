@@ -1,2 +1,1 @@
 1> AddEventListener when DOM content change. (Router).
-2> Add color class after added printer.
