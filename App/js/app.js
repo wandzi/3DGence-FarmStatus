@@ -1,14 +1,15 @@
 const printersList = document.querySelector('#printers-status-list');
 
 class Printer {
-    constructor(printer_model, printer_number, printing_file_name, printing_hours){
+    constructor(printer_id, printer_model, printer_number, printing_file_name, printing_hours){
+        this.printerId = printer_id,
         this.printerModel = printer_model;
         this.printerNumber = printer_number;
         this.printingFileName = printing_file_name;
         this.printingHours = printing_hours;
     }
     
-    containerColor(){
+    containerColor() {
         let moduleColor;
         
         switch (this.printerModel) {
@@ -33,26 +34,49 @@ class Printer {
         }
         return moduleColor;
     }
+
+    printCountdown(printingHoursInMiliseconds) {
+        let endDate = new Date().getTime() + printingHoursInMiliseconds;
+        let refreshCountdown = setInterval(() => {
+            let actualDate = new Date().getTime(),
+                difference = endDate - actualDate,
+                days,
+                hours,
+                minutes,
+                seconds;
+
+        // Calculations to get days, hours minutes and seconds to the end of the print.
+        days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        }, 1000);        
+    }
+
 }
 
 //Generating UI printers list from DataBase
 const SetupPrintersList = (data) => {
-
     let list = '';
+
     data.forEach(doc => {
-        const dataBase = doc.data();
-        const printer = new Printer(dataBase.printer_model, dataBase.printer_number, dataBase.printing_file_name, dataBase.printing_hours);
-        const moduleColor = printer.containerColor();
+        const dataBase = doc.data(),
+              printer = new Printer(dataBase.printer_id, dataBase.printer_model, dataBase.printer_number, dataBase.printing_file_name, dataBase.printing_hours),
+              moduleColor = printer.containerColor();
+        
+        let printingHoursInMiliseconds = parseInt(printer.printingHours) * 3600000;
+        printer.printCountdown(printingHoursInMiliseconds);
 
         const printerContainer = `
         <div class="printer-container ${moduleColor}">
-            <p class="bigger-font ">${printer.printerModel} - numer: ${printer.printerNumber}</p>
+            <p class="bigger-font ">${printer.printerModel} - nr: ${printer.printerNumber}</p>
             <p class="bigger-font">${printer.printingFileName}</p>
             <div class="w3-light-grey w3-round-xlarge">
-                <div class="w3-container w3-blue w3-round-xlarge progressBar">
+                <div class="w3-container w3-blue w3-round-xlarge progressBar-${printer.printerId}">
                 </div>
             </div> 
-            <p class="smaller-font" id="">${printer.printingHours}h</p>
+            <p class="smaller-font" id="countdown-${printer.printerId}"></p>
         </div>
         `;      
 

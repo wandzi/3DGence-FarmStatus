@@ -8,7 +8,15 @@ addPrinterForm.addEventListener('submit', (e) => {
         printingFileName = document.querySelector("#printingFileName").value,
         printingFileTime = document.querySelector("#printingFileTime").value;   
 
+        let idHours = new Date().getHours(),
+            idMinutes = new Date().getMinutes(),
+            idSeconds = new Date().getSeconds(),
+            idMiliseconds = new Date().getMilliseconds();
+
+        const printerId = `${idHours}${idMinutes}${idSeconds}${idMiliseconds}`;
+
     db.collection('printers').add({
+        printer_id: printerId,
         printer_model: printerModelValue,
         printer_number: printerNumber,
         printing_file_name: printingFileName,

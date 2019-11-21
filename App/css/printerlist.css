@@ -1,5 +1,6 @@
 .printers-status {
     width: 95%;
+    margin-top: 20px;
 }
 .printer-container {
     display: flex;
