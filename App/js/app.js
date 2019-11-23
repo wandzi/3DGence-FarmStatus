@@ -1,12 +1,13 @@
 const printersList = document.querySelector('#printers-status-list');
 
 class Printer {
-    constructor(printer_id, printer_model, printer_number, printing_file_name, printing_hours){
+    constructor(printer_id, printer_model, printer_number, printing_begin_time_in_miliseconds, printing_file_name, printing_end_time_in_miliseconds){
         this.printerId = printer_id,
-        this.printerModel = printer_model;
-        this.printerNumber = printer_number;
-        this.printingFileName = printing_file_name;
-        this.printingHours = printing_hours;
+        this.printerModel = printer_model,
+        this.printerNumber = printer_number,
+        this.printingBeginTimeInMilisecond = printing_begin_time_in_miliseconds,
+        this.printingFileName = printing_file_name,
+        this.printingEndTimeInMiliseconds = printing_end_time_in_miliseconds;
     }
     
     containerColor() {
@@ -35,23 +36,38 @@ class Printer {
         return moduleColor;
     }
 
-    printCountdown(printingHoursInMiliseconds) {
-        let endDate = new Date().getTime() + printingHoursInMiliseconds;
+    printCountdown() {
         let refreshCountdown = setInterval(() => {
             let actualDate = new Date().getTime(),
-                difference = endDate - actualDate,
+                difference = this.printingEndTimeInMiliseconds - actualDate,
                 days,
                 hours,
                 minutes,
                 seconds;
 
-        // Calculations to get days, hours minutes and seconds to the end of the print.
-        days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            // Calculations to get days, hours minutes and seconds to the end of the print.
+            days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        }, 1000);        
+            // Inner HTML
+            const printerContainer = document.querySelector(`#printer-${this.printerId}`),
+                countdownTimer = document.querySelector(`#countdown-${this.printerId}`);
+
+            if (days > 0) {
+                countdownTimer.innerHTML = `${days} dni ${hours} godzin ${minutes} minut ${seconds} sekund`;
+            } else if (hours > 0) {
+                countdownTimer.innerHTML = `${hours} godzin ${minutes} minut ${seconds} sekund`;
+            } else if (minutes > 0) {
+                countdownTimer.innerHTML = `${minutes} minut ${seconds} sekund`;
+            } else if (seconds > 0) {
+                countdownTimer.innerHTML = `${seconds} sekund`;
+            } else {
+                countdownTimer.innerHTML = `Zakoñczono wydruk.`
+            }
+            
+        }, 1000);       
     }
 
 }
@@ -62,14 +78,13 @@ const SetupPrintersList = (data) => {
 
     data.forEach(doc => {
         const dataBase = doc.data(),
-              printer = new Printer(dataBase.printer_id, dataBase.printer_model, dataBase.printer_number, dataBase.printing_file_name, dataBase.printing_hours),
+              printer = new Printer(dataBase.printer_id, dataBase.printer_model, dataBase.printer_number, dataBase.printing_begin_time_in_miliseconds, dataBase.printing_file_name, dataBase.printing_end_time_in_miliseconds),
               moduleColor = printer.containerColor();
         
-        let printingHoursInMiliseconds = parseInt(printer.printingHours) * 3600000;
-        printer.printCountdown(printingHoursInMiliseconds);
+        printer.printCountdown();
 
         const printerContainer = `
-        <div class="printer-container ${moduleColor}">
+        <div class="printer-container printer-${printer.printerId} ${moduleColor}">
             <p class="bigger-font ">${printer.printerModel} - nr: ${printer.printerNumber}</p>
             <p class="bigger-font">${printer.printingFileName}</p>
             <div class="w3-light-grey w3-round-xlarge">

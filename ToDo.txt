@@ -1,1 +1,2 @@
 1> AddEventListener when DOM content change. (Router).
+2> TODO Check if Printer (ID) exist in DB.
