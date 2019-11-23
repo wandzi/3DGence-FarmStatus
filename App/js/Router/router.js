@@ -33,7 +33,7 @@ let application = `
     </div>
     <img alt="app-logo" class="app-page-logo" src="App/img/logo.png">
     <div class="menu">
-      <i class="fa fa-bell" id="notificationModalBtn">              
+      <i class="fa fa-bell" id="NotificationModalBtn">              
         <span class="notification-counter" id="notificationCounterContainer"></span>
       </i> 
       <i class="fa fa-sign-out" aria-hidden="true" id="logoutBtn"></i>
@@ -45,10 +45,10 @@ let application = `
     <!-- Genereted UI printers list from DataBase -->
   </div>  
 
-  <!-- Modals -->
+  <!-- Printer Modal -->
   <div id="printerModal" class="modal">
     <div class="modal-content">
-      <span class="close" id="closeModalBtn">&times;</span>
+      <span class="close" id="closePrinterModalBtn">&times;</span>
       <div class="container">
         <form name="addPrinterForm" class="addPrinterForm" id="addPrinterForm">
           <label for="printer_model" id="addPrintersName">Model drukarki</label>
@@ -74,6 +74,16 @@ let application = `
 
           <input type="submit" class="addPrinterToDatabaseBtn" id="addPrinterToDatabaseBtn" value="Dodaj">
         </form>
+      </div>  
+    </div>
+  </div>
+  
+  <!-- Notification Modal -->
+  <div id="NotificationModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeNotificationModalBtn">&times;</span>
+      <div class="container" id="NotificationModalContent">
+        
       </div>  
     </div>
   </div>

@@ -1,15 +1,32 @@
 window.setTimeout(() =>{
-    let addPrinterStatus = addPrinterStatusBtn = document.querySelector("#addPrinterStatusBtn"),
-    modalBtn = document.querySelector("#closeModalBtn"),
-    addPrinterModal = document.querySelector('#printerModal');
+    //Add Printer Modal
+    let addPrinterStatus = document.querySelector("#addPrinterStatusBtn"),
+        closePrinterModalBtn = document.querySelector("#closePrinterModalBtn"),
+        addPrinterModal = document.querySelector('#printerModal');
 
-    addPrinterStatus.addEventListener('click', OpenModal);
-    closeModalBtn.addEventListener('click', CloseModal);
+    addPrinterStatus.addEventListener('click', OpenAddPrinterModal);
+    closePrinterModalBtn.addEventListener('click', CloseAddPrinterModal);
 
-    function OpenModal() {
+    function OpenAddPrinterModal() {
         addPrinterModal.classList.add("open");
     }
-    function CloseModal() {
+    function CloseAddPrinterModal() {
         addPrinterModal.classList.remove("open");
     }   
+
+    //Notification Modal
+    let notificationModalBtn = document.querySelector("#NotificationModalBtn"),
+        closeNotificationModalBtn = document.querySelector("#closeNotificationModalBtn"),
+        notificationModal = document.querySelector("#NotificationModal");
+
+        notificationModalBtn.addEventListener('click', OpenNotificationModal);
+        closeNotificationModalBtn.addEventListener('click', CloseNotificationModal);
+
+    function OpenNotificationModal() {
+        notificationModal.classList.add("open");
+    }
+    function CloseNotificationModal() {
+        notificationModal.classList.remove("open");
+    }   
+
 }, 1000);

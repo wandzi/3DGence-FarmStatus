@@ -1,7 +1,7 @@
 const printersList = document.querySelector('#printers-status-list');
 
 class Printer {
-    constructor(printer_ID, printer_model, printer_number, printing_begin_time_in_miliseconds, printing_file_name, printing_end_time_in_miliseconds){
+    constructor(printer_ID, printer_model, printer_number, printing_begin_time_in_miliseconds, printing_file_name, printing_end_time_in_miliseconds) {
         this.printerId = printer_ID,
         this.printerModel = printer_model,
         this.printerNumber = printer_number,
@@ -65,10 +65,11 @@ class Printer {
             } else if (seconds > 0) {
                 countdownTimer.innerHTML = `${seconds} sekund`;
             } else {
-                // Delete from DB
-
-               // Push to notification
-               this.pushNotification();
+                countdownTimer.innerHTML = 'Zakończono wydruk.';
+                clearInterval(refreshCountdown);
+                
+                this.pushNotification();
+                this.movePrinterContainerToTheTop();
             }
 
             // Progress Bar
@@ -84,15 +85,31 @@ class Printer {
                 progressBar.innerHTML = `${actualPercentOfThePrint}%`;
                 progressBar.style.width = `${actualPercentOfThePrint}%`;
             } else {
-                progressBar.innerHTML = `100%`;
-                progressBar.style.width = `100%`;
+                progressBar.innerHTML = '100%';
+                progressBar.style.width = '100%';
             }
-        }, 1000);  
 
+        }, 1000);  
     }
-    
-    pushNotification(){
-        
+
+    movePrinterContainerToTheTop() {
+        let finishedPrinterContainer = document.querySelector(`#${this.printerId}`),
+            containerCloseBtn;
+
+        containerCloseBtn = document.createElement("span"); 
+        containerCloseBtn.classList.add('close');
+        containerCloseBtn.id = ('deleteContainerBtn');
+        containerCloseBtn.innerHTML = "&times;";
+
+
+        finishedPrinterContainer.insertBefore(containerCloseBtn, finishedPrinterContainer.childNodes[0]);;
+        printersList.insertBefore(finishedPrinterContainer, printersList.childNodes[0]);
+    }
+
+    pushNotification() {
+        let notificationModalContent = document.querySelector("#NotificationModalContent");
+       
+        notificationModalContent.innerHTML = `Drukarka ${this.printerModel} numer: ${this.printerNumber} wydrukowała ${this.printingFileName}`;
     }
 
 }

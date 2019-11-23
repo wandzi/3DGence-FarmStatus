@@ -28,6 +28,7 @@ nav {
     background-color: #FFFFFF;
     padding-bottom: 12px;
     border-bottom: 1px solid #DB2033;
+    z-index: 2;
 }
 nav > .menu {
     position: absolute;
@@ -131,10 +132,20 @@ nav > .menu > i {
 .smaller-font {
     font-size: 13px;
 }
-
+.printer-container {
+    position: relative;
+}
 .printer-container > p {
     color: #FFFFFF;
     margin-bottom: 1px;
+}
+.printer-container > span {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    z-index: 1;
 }
 .w3-light-grey {
     margin-top: 10px;

@@ -14,8 +14,6 @@ addPrinterForm.addEventListener('submit', (e) => {
         printingFileTimeInMiliseconds = printingFileTime * 3600000,
         printingEndTimeInMiliseconds = printingBeginTimeInMiliseconds + printingFileTimeInMiliseconds;
 
-    // TODO: Check if Printer(ID) exist in DB to prevent double added printer in the same moment.
-
     //Pushing data to the Firebase 
     db.collection('printers').add({
         printer_model: printerModelValue,
