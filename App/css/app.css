@@ -19,10 +19,15 @@ body {
 nav {
     display: flex !important;
     justify-content: center;
+    position: fixed;
+    top: 0;
+    right: 0;
     align-items: center;
     flex-direction: column;
     width: 100%;
     background-color: #FFFFFF;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #DB2033;
 }
 nav > .menu {
     position: absolute;
@@ -39,6 +44,7 @@ nav > .clock {
     margin: 0;
     padding: 0;
     width: 20%;
+    color: #535353;
 }
 nav > h4 {
     text-transform: uppercase;
@@ -46,13 +52,13 @@ nav > h4 {
 }
 nav > .menu > i {
     padding: 5px;
-    color: #fce300;
+    color: #DB2033;
     font-size: 1.6rem;
     cursor: pointer;
     z-index: 90;
 }
 .notification-counter {
-    color: #ff0000;
+    color: #DB2033;
     font-size: 1.1rem;
 }   
 .app-page-logo {
@@ -74,7 +80,7 @@ nav > .menu > i {
     right: 25px;
     padding: 5px;
     color: #ffffff;
-    background-color: #fce300;
+    background-color: #DB2033;
     font-size: 2.5rem;
     border-radius: 50%;
     cursor: pointer;

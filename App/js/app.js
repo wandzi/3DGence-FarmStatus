@@ -1,8 +1,8 @@
 const printersList = document.querySelector('#printers-status-list');
 
 class Printer {
-    constructor(printer_id, printer_model, printer_number, printing_begin_time_in_miliseconds, printing_file_name, printing_end_time_in_miliseconds){
-        this.printerId = printer_id,
+    constructor(printer_ID, printer_model, printer_number, printing_begin_time_in_miliseconds, printing_file_name, printing_end_time_in_miliseconds){
+        this.printerId = printer_ID,
         this.printerModel = printer_model,
         this.printerNumber = printer_number,
         this.printingBeginTimeInMilisecond = printing_begin_time_in_miliseconds,
@@ -52,8 +52,9 @@ class Printer {
             seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
             // Inner HTML
+
             const printerContainer = document.querySelector(`#printer-${this.printerId}`),
-                countdownTimer = document.querySelector(`#countdown-${this.printerId}`);
+                  countdownTimer = document.querySelector(`#countdown-${this.printerId}`);
 
             if (days > 0) {
                 countdownTimer.innerHTML = `${days} dni ${hours} godzin ${minutes} minut ${seconds} sekund`;
@@ -64,8 +65,10 @@ class Printer {
             } else if (seconds > 0) {
                 countdownTimer.innerHTML = `${seconds} sekund`;
             } else {
-                countdownTimer.innerHTML = `Zakończono wydruk.`;
-                //Pushing to the notification
+                // Delete from DB
+
+               // Push to notification
+               this.pushNotification();
             }
 
             // Progress Bar
@@ -76,6 +79,7 @@ class Printer {
                   actualPercentOfThePrint = (Math.round(actualDifference / onePercent));
 
             const progressBar = document.querySelector(`.progressBar-${this.printerId}`);
+
             if (actualPercentOfThePrint <= 100) {
                 progressBar.innerHTML = `${actualPercentOfThePrint}%`;
                 progressBar.style.width = `${actualPercentOfThePrint}%`;
@@ -83,26 +87,29 @@ class Printer {
                 progressBar.innerHTML = `100%`;
                 progressBar.style.width = `100%`;
             }
-             
+        }, 1000);  
 
-        }, 1000);       
+    }
+    
+    pushNotification(){
+        
     }
 
 }
 
 //Generating UI printers list from DataBase
-const SetupPrintersList = (data) => {
+const setupPrintersList = (data) => {
     let list = '';
-
     data.forEach(doc => {
         const dataBase = doc.data(),
-              printer = new Printer(dataBase.printer_id, dataBase.printer_model, dataBase.printer_number, dataBase.printing_begin_time_in_miliseconds, dataBase.printing_file_name, dataBase.printing_end_time_in_miliseconds),
+              printerID = doc.id,
+              printer = new Printer(printerID, dataBase.printer_model, dataBase.printer_number, dataBase.printing_begin_time_in_miliseconds, dataBase.printing_file_name, dataBase.printing_end_time_in_miliseconds),
               moduleColor = printer.containerColor();
-        
+
         printer.printCountdown();
 
         const printerContainer = `
-        <div class="printer-container printer-${printer.printerId} ${moduleColor}">
+        <div class="printer-container ${moduleColor}" id="${printer.printerId}">
             <p class="bigger-font ">${printer.printerModel} - nr: ${printer.printerNumber}</p>
             <p class="bigger-font">${printer.printingFileName}</p>
             <div class="w3-light-grey w3-round-xlarge">

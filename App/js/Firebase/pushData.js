@@ -9,9 +9,6 @@ addPrinterForm.addEventListener('submit', (e) => {
         printingFileName = document.querySelector("#printingFileName").value,
         printingFileTime = document.querySelector("#printingFileTime").value;   
 
-    // Creating an ID for the printer
-    const printerId = new Date().getTime();
-
     //Converting time & date to miliseconds.
     let printingBeginTimeInMiliseconds = new Date().getTime(),
         printingFileTimeInMiliseconds = printingFileTime * 3600000,
@@ -21,7 +18,6 @@ addPrinterForm.addEventListener('submit', (e) => {
 
     //Pushing data to the Firebase 
     db.collection('printers').add({
-        printer_id: printerId,
         printer_model: printerModelValue,
         printer_number: printerNumber,
         printing_file_name: printingFileName,
