@@ -64,8 +64,21 @@ class Printer {
             } else if (seconds > 0) {
                 countdownTimer.innerHTML = `${seconds} sekund`;
             } else {
-                countdownTimer.innerHTML = `Zakoñczono wydruk.`
+                countdownTimer.innerHTML = `Zakoñczono wydruk.`;
+                //Pushing to the notification
             }
+
+            // Progress Bar
+
+            const printingTimeInMiliseconds = this.printingEndTimeInMiliseconds - this.printingBeginTimeInMilisecond,
+                  actualDifference = printingTimeInMiliseconds - difference,
+                  onePercent = printingTimeInMiliseconds * 0.01,
+                  actualPercentOfThePrint = (Math.round(actualDifference / onePercent));
+
+            const progressBar = document.querySelector(`.progressBar-${this.printerId}`);
+
+            progressBar.innerHTML = `${actualPercentOfThePrint}%`,
+            progressBar.style.width = `${actualPercentOfThePrint}%`; 
             
         }, 1000);       
     }
