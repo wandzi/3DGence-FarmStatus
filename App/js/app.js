@@ -64,7 +64,7 @@ class Printer {
             } else if (seconds > 0) {
                 countdownTimer.innerHTML = `${seconds} sekund`;
             } else {
-                countdownTimer.innerHTML = `Zakoñczono wydruk.`;
+                countdownTimer.innerHTML = `Zakończono wydruk.`;
                 //Pushing to the notification
             }
 
@@ -76,10 +76,15 @@ class Printer {
                   actualPercentOfThePrint = (Math.round(actualDifference / onePercent));
 
             const progressBar = document.querySelector(`.progressBar-${this.printerId}`);
+            if (actualPercentOfThePrint <= 100) {
+                progressBar.innerHTML = `${actualPercentOfThePrint}%`;
+                progressBar.style.width = `${actualPercentOfThePrint}%`;
+            } else {
+                progressBar.innerHTML = `100%`;
+                progressBar.style.width = `100%`;
+            }
+             
 
-            progressBar.innerHTML = `${actualPercentOfThePrint}%`,
-            progressBar.style.width = `${actualPercentOfThePrint}%`; 
-            
         }, 1000);       
     }
 
