@@ -130,7 +130,7 @@ label {
 
 .close:hover,
 .close:focus {
-    color: black;
+    color: #535353;
     text-decoration: none;
     cursor: pointer;
 }

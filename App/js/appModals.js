@@ -1,4 +1,4 @@
-window.setTimeout(() =>{
+window.setTimeout( () =>{
     //Add Printer Modal
     let addPrinterStatus = document.querySelector("#addPrinterStatusBtn"),
         closePrinterModalBtn = document.querySelector("#closePrinterModalBtn"),

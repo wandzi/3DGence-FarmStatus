@@ -1,7 +1,6 @@
 window.setTimeout(() =>{
     const logoutBtn = document.querySelector("#logoutBtn");
-    logoutBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+    logoutBtn.addEventListener('click', () => {
         auth.signOut();
         changeRoute('/');
         location.reload();

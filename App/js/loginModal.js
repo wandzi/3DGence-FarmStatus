@@ -3,13 +3,12 @@ window.setTimeout(() =>{
     closeLoginModalBtn = document.querySelector("#closeLoginModalBtn"),
     loginModal = document.querySelector('#loginModal');
 
-    loginBtn.addEventListener('click', openLoginModal);
-    closeLoginModalBtn.addEventListener('click', closeLoginModal);
-
-    function openLoginModal() {
+    loginBtn.addEventListener('click', () => {
         loginModal.classList.add("open");
-    }
-    function closeLoginModal() {
+    });
+    closeLoginModalBtn.addEventListener('click', () => {
         loginModal.classList.remove("open");
-    }   
+    });
+
+
 }, 1000);

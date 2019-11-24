@@ -53,8 +53,7 @@ class Printer {
 
             // Inner HTML
 
-            const printerContainer = document.querySelector(`#printer-${this.printerId}`),
-                  countdownTimer = document.querySelector(`#countdown-${this.printerId}`);
+            const countdownTimer = document.querySelector(`#countdown-${this.printerId}`);
 
             if (days > 0) {
                 countdownTimer.innerHTML = `${days} dni ${hours} godzin ${minutes} minut ${seconds} sekund`;
@@ -66,10 +65,6 @@ class Printer {
                 countdownTimer.innerHTML = `${seconds} sekund`;
             } else {
                 countdownTimer.innerHTML = 'Zakończono wydruk.';
-                clearInterval(refreshCountdown);
-                
-                this.pushNotification();
-                this.movePrinterContainerToTheTop();
             }
 
             // Progress Bar
@@ -89,10 +84,39 @@ class Printer {
                 progressBar.style.width = '100%';
             }
 
+            if (days < 0 && hours < 0 && minutes < 0 && seconds <= 0) {
+                clearInterval(refreshCountdown);
+
+                this.pushNotification();
+                this.movePrinterContainerToTheTop();
+                this.showCloseBtn();
+
+                setTimeout( () =>{ 
+                    let finishedPrinterContainer = document.querySelector(`#${this.printerId}`);
+                    finishedPrinterContainer.remove();
+                    this.removePrinterFromDatabase();
+                 }, 900000);
+                
+            }
+
         }, 1000);  
     }
 
+    removePrinterFromDatabase() {
+        console.log('removed');
+    }
+
+    pushNotification() {
+
+    }
+
     movePrinterContainerToTheTop() {
+        let finishedPrinterContainer = document.querySelector(`#${this.printerId}`);
+
+        printersList.insertBefore(finishedPrinterContainer, printersList.childNodes[0]);
+    }
+
+    showCloseBtn() {
         let finishedPrinterContainer = document.querySelector(`#${this.printerId}`),
             containerCloseBtn;
 
@@ -101,16 +125,15 @@ class Printer {
         containerCloseBtn.id = ('deleteContainerBtn');
         containerCloseBtn.innerHTML = "&times;";
 
+        finishedPrinterContainer.insertBefore(containerCloseBtn, finishedPrinterContainer.childNodes[0]);
 
-        finishedPrinterContainer.insertBefore(containerCloseBtn, finishedPrinterContainer.childNodes[0]);;
-        printersList.insertBefore(finishedPrinterContainer, printersList.childNodes[0]);
+        containerCloseBtn.addEventListener('click', () => {
+            finishedPrinterContainer.remove();
+            this.removePrinterFromDatabase();
+        });
+
     }
 
-    pushNotification() {
-        let notificationModalContent = document.querySelector("#NotificationModalContent");
-       
-        notificationModalContent.innerHTML = `Drukarka ${this.printerModel} numer: ${this.printerNumber} wydrukowała ${this.printingFileName}`;
-    }
 
 }
 
@@ -143,19 +166,5 @@ const setupPrintersList = (data) => {
     printersList.innerHTML = list;
 }
 
-function PrinterSuccessfullyAddedToDatabase(message, className) {
 
-    const div = document.createElement("div");
-    div.className = `${className}`;
-    div.appendChild(document.createTextNode(message));
-
-    const printersStatusList = document.querySelector("#printers-status-list");
-
-    printersStatusList.before(div);
-
-    setTimeout(function(){
-        document.querySelector('.succes-alert').remove();
-    },2100);
-    
-}
 
