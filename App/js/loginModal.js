@@ -10,5 +10,4 @@ window.setTimeout(() =>{
         loginModal.classList.remove("open");
     });
 
-
 }, 1000);

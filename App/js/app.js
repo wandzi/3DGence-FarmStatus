@@ -1,4 +1,4 @@
-const printersList = document.querySelector('#printers-status-list');
+const printersList = document.querySelector("#printers-status-list");
 
 class Printer {
     constructor(printer_ID, printer_model, printer_number, printing_begin_time_in_miliseconds, printing_file_name, printing_end_time_in_miliseconds) {
@@ -84,17 +84,15 @@ class Printer {
                 progressBar.style.width = '100%';
             }
 
-            if (days < 0 && hours < 0 && minutes < 0 && seconds <= 0) {
+            if (actualPercentOfThePrint >= 100) {
                 clearInterval(refreshCountdown);
 
                 this.pushNotification();
-                this.movePrinterContainerToTheTop();
-                this.showCloseBtn();
+                this.removePrinterFromDatabase();
 
                 setTimeout( () =>{ 
                     let finishedPrinterContainer = document.querySelector(`#${this.printerId}`);
                     finishedPrinterContainer.remove();
-                    this.removePrinterFromDatabase();
                  }, 900000);
                 
             }
@@ -102,40 +100,22 @@ class Printer {
         }, 1000);  
     }
 
-    removePrinterFromDatabase() {
-        console.log('removed');
-    }
-
     pushNotification() {
-
-    }
-
-    movePrinterContainerToTheTop() {
-        let finishedPrinterContainer = document.querySelector(`#${this.printerId}`);
-
-        printersList.insertBefore(finishedPrinterContainer, printersList.childNodes[0]);
-    }
-
-    showCloseBtn() {
-        let finishedPrinterContainer = document.querySelector(`#${this.printerId}`),
-            containerCloseBtn;
-
-        containerCloseBtn = document.createElement("span"); 
-        containerCloseBtn.classList.add('close');
-        containerCloseBtn.id = ('deleteContainerBtn');
-        containerCloseBtn.innerHTML = "&times;";
-
-        finishedPrinterContainer.insertBefore(containerCloseBtn, finishedPrinterContainer.childNodes[0]);
-
-        containerCloseBtn.addEventListener('click', () => {
-            finishedPrinterContainer.remove();
-            this.removePrinterFromDatabase();
+        //Pushing new printer to DB "notifications"
+        db.collection('notifications').add({
+            printer_model: this.printerModel,
+            printer_number: this.printerNumber,
+            printing_file_name: this.printingFileName,
+            printing_end_time_in_miliseconds: this.printingEndTimeInMiliseconds,
         });
-
     }
-
+    
+    removePrinterFromDatabase() {
+        db.collection("printers").doc(`${this.printerId}`).delete();
+    }
 
 }
+
 
 //Generating UI printers list from DataBase
 const setupPrintersList = (data) => {
@@ -144,8 +124,8 @@ const setupPrintersList = (data) => {
         const dataBase = doc.data(),
               printerID = doc.id,
               printer = new Printer(printerID, dataBase.printer_model, dataBase.printer_number, dataBase.printing_begin_time_in_miliseconds, dataBase.printing_file_name, dataBase.printing_end_time_in_miliseconds),
-              moduleColor = printer.containerColor();
-
+              
+        moduleColor = printer.containerColor();
         printer.printCountdown();
 
         const printerContainer = `
@@ -166,5 +146,110 @@ const setupPrintersList = (data) => {
     printersList.innerHTML = list;
 }
 
+// Notification
+const notificationsList = document.querySelector("#NotificationModalContent");
+
+class Notification {
+    constructor(printer_ID, printer_model, printer_number, printing_file_name, printing_end_time_in_miliseconds){
+        this.printerId = printer_ID,
+        this.printerModel = printer_model,
+        this.printerNumber = printer_number,
+        this.printingFileName = printing_file_name,
+        this.printingEndTimeInMiliseconds = printing_end_time_in_miliseconds;
+    }
+
+    containerColor() {
+        let moduleColor;
+        
+        switch (this.printerModel) {
+            case ("One"):
+                moduleColor = 'one-printer';
+                break;
+            case ("Double P255"):
+                moduleColor = 'double-printer';
+                break;
+            case ("F340 - Pro"):
+                moduleColor = 'f340-pro-printer';    
+                break;
+            case ("F340 - HT"):
+                moduleColor = 'f340-ht-printer';
+                break;
+            case ("F340 - HT Max"):
+                moduleColor = 'f340-htmax-printer';
+                break;
+            case ("FormLab Form2"):
+                moduleColor = 'formlab-printer';
+                break;
+        }
+        return moduleColor;
+    }
+
+    notificationTime() {
+        let notificationTime,
+            notificationDate,
+            notificationDay,
+            notificationMonth,
+            notificationYear,
+            notificationHour,
+            notificationMinutes,
+            timeElement;
+        
+            //Notification time
+            notificationTime = this.printingEndTimeInMiliseconds;
+            notificationDate = new Date(notificationTime);
+            
+            notificationDay = notificationDate.getDate();
+            if( notificationDay < 10 ){
+                notificationDay = `0${notificationDay}`;
+            } 
+            notificationMonth = notificationDate.getMonth() + 1;
+            if( notificationMonth < 10 ){
+                notificationMonth = `0${notificationMonth}`;
+            } 
+            notificationYear = notificationDate.getFullYear();
+
+            notificationHour = notificationDate.getHours();
+            if( notificationHour < 10 ){
+                notificationHour = `0${notificationHour}`;
+            } 
+
+            notificationMinutes = notificationDate.getMinutes();
+            if( notificationMinutes < 10 ){
+                notificationMinutes = `0${notificationMinutes}`;
+            } 
+
+            timeElement = `<span class="notification-time">${notificationDay}/${notificationMonth}/${notificationYear} ${notificationHour}:${notificationMinutes}</span>`;
+            return timeElement;
+    }
+}
+
+//Generating notification list 
+
+const setupNotificationList = (notificationData) => {
+    let list = '';
+
+    notificationData.forEach(doc => {
+        const dataBase = doc.data(),
+              notificationID = doc.id,
+              notification = new Notification(notificationID, dataBase.printer_model, dataBase.printer_number, dataBase.printing_file_name, dataBase.printing_end_time_in_miliseconds);
+
+        let moduleColor = notification.containerColor(),
+            time = notification.notificationTime();
+
+        const notificationContainer = `
+            <div class="notification-printer ${moduleColor}">
+            <p class="notification-info">Drukarka ${notification.printerModel} nr ${notification.printerNumber} zakończyła wydruk: ${notification.printingFileName}</p>
+            <br />${time}
+            </div>        
+        `;
+
+        list+= notificationContainer;
+    });
+
+    notificationsList.innerHTML = list;
+}
+
+    
+        
 
 

@@ -80,9 +80,10 @@ let application = `
   
   <!-- Notification Modal -->
   <div id="NotificationModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content modal-content-notification">
       <span class="close" id="closeNotificationModalBtn">&times;</span>
-      <div class="container" id="NotificationModalContent">
+      <h2 class="notification-title">Notifications</h2>
+      <div class="container notification-container" id="NotificationModalContent">
         
       </div>  
     </div>

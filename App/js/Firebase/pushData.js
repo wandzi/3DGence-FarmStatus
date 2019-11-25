@@ -1,21 +1,6 @@
 const addPrinterForm = document.querySelector("#addPrinterForm");
 
-function DataSuccesfullyPushedToDatabase(message, className) {
-
-    const div = document.createElement("div");
-    div.className = `${className}`;
-    div.appendChild(document.createTextNode(message));
-
-    const printersStatusList = document.querySelector("#printers-status-list");
-
-    printersStatusList.before(div);
-
-    setTimeout(function(){
-        document.querySelector('.succes-alert').remove();
-    },2300);
-    
-}
-
+//Pushing new printer to DB "printers"
 addPrinterForm.addEventListener('submit', (e) => {
 
     e.preventDefault();
@@ -40,8 +25,8 @@ addPrinterForm.addEventListener('submit', (e) => {
     }).then(() => {
         document.querySelector('#printerModal').classList.remove("open");
         addPrinterForm.reset();
-        printer.DataSuccesfullyPushedToDatabase("Drukarka została dodana do listy",'succes-alert');
     });
     
 });
+
 
