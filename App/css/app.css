@@ -160,7 +160,7 @@ nav > .menu > i {
 
 .modal-content-notification {
     width: 97% !important;
-    height: 90% !important;
+    height: 85% !important;
     padding-bottom: 20px !important;
     overflow-y: initial !important;
 }
@@ -176,7 +176,7 @@ nav > .menu > i {
     width: 100%; 
     height: 100%; 
     overflow-y: scroll;
-    padding-top:10px;
+    padding-top: 60px;
 }
 .notification-printer {
     width: 90%;

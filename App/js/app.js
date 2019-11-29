@@ -218,7 +218,7 @@ class Notification {
                 notificationMinutes = `0${notificationMinutes}`;
             } 
 
-            timeElement = `<span class="notification-time">${notificationDay}/${notificationMonth}/${notificationYear} ${notificationHour}:${notificationMinutes}</span>`;
+            timeElement = `<span class="notification-time">${notificationHour}:${notificationMinutes} - ${notificationDay}/${notificationMonth}/${notificationYear}</span>`;
             return timeElement;
     }
 }

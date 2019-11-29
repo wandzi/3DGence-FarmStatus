@@ -1,4 +1,3 @@
 1> AddEventListener when DOM content change. (Router).
 2> Rewrite appModals - code its ugly.
 3> Add notification message when succesfully added printer to the list.
-4> Add notification message when succesfully added printer to the notification list.

@@ -1,6 +1,21 @@
 const addPrinterForm = document.querySelector("#addPrinterForm");
 
-//Pushing new printer to DB "printers"
+printerSuccessfullyAdded = () => {
+    const printersStatusList = document.querySelector("#printers-status-list"),
+          div = document.createElement("div"),
+          message = document.createTextNode('Printer was successfully added.');
+
+    div.className = 'succes-alert';
+    div.appendChild(message);
+    printersStatusList.insertBefore(div, printersStatusList.childNodes[0]);
+
+    setTimeout(() => {
+        document.querySelector('.succes-alert').remove();;
+    }, 3000);
+}
+
+//Pushing new printer to Data base "printers"
+
 addPrinterForm.addEventListener('submit', (e) => {
 
     e.preventDefault();
@@ -25,6 +40,7 @@ addPrinterForm.addEventListener('submit', (e) => {
     }).then(() => {
         document.querySelector('#printerModal').classList.remove("open");
         addPrinterForm.reset();
+        printerSuccessfullyAdded();
     });
     
 });
