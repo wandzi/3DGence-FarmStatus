@@ -62,3 +62,8 @@ label {
 .signin-button {
     margin-top: 20px;
 }
+.addPrinterToDatabaseBtn, .signin-button, .login {
+    color: #FFFFFF;
+    background-color: #DB2033 !important;
+    border-color: #DB2033 !important;
+}
