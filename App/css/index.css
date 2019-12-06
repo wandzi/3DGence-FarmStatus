@@ -10,7 +10,9 @@
     background-color: #00000066; 
   }
 .open{
-    display: block !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
 }
 .modal-content {
     display: flex;
@@ -66,4 +68,7 @@ label {
     color: #FFFFFF;
     background-color: #DB2033 !important;
     border-color: #DB2033 !important;
+}
+.addPrinterToDatabaseBtn, .signin-button, .login:hover {
+    color: #FFFFFF !important;
 }

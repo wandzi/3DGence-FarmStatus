@@ -120,7 +120,7 @@ label {
 .close {
     position: relative;
     top: 1%;
-    right: -40%;
+    right: -45%;
     margin: 0;
     padding: 0;
     color: #aaa;
@@ -171,4 +171,8 @@ label {
 .addPrinterToDatabaseBtn {
     width: 40%;
     margin-top: 40px;
+}
+
+input:focus {
+    border-color: #5d5c5c !important;
 }

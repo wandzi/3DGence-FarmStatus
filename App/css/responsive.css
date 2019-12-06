@@ -1,0 +1,28 @@
+@media only screen and (min-width: 750px) and (min-height: 700px){
+    .login {
+        margin-top: 50px;
+        width: 220px;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .close {
+        position: relative;
+        top: 1%;
+        right: -42%;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    .modal-content {
+        height: 80%;
+    }
+    .login-logo {
+        position: fixed;
+        top: 40%;
+        right: 12%;
+        transform: rotate(90deg);
+        height: 15%;
+        width: auto;
+    }
+
+}
