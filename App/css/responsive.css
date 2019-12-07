@@ -26,3 +26,35 @@
     }
 
 }
+@media only screen and (min-width: 480px) {
+    nav > .menu > i {
+        font-size: 1.9rem;
+        padding: 7px;
+    }
+    #clock > span {
+        font-size: 1.9rem;
+    
+    }
+}
+@media only screen and (min-width: 720px) {
+    nav > .menu > i {
+        padding: 10px;
+        font-size: 2.3rem;
+    }
+    #clock > span {
+        font-size: 2.3rem;
+    
+    }
+}
+@media only screen and (min-width: 600px) {
+    .app-page-logo {
+        padding: 15px;
+        width: 30%;
+    }
+}
+@media only screen and (min-width: 900px) {
+    .app-page-logo {
+        padding: 15px;
+        width: 25%;
+    }
+}
