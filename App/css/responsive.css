@@ -13,9 +13,6 @@
 }
 
 @media only screen and (max-height: 480px) {
-    .modal-content {
-        height: 80%;
-    }
     .login-logo {
         position: fixed;
         top: 40%;
@@ -56,5 +53,107 @@
     .app-page-logo {
         padding: 15px;
         width: 25%;
+    }
+}
+@media only screen and (min-width: 1100px) {
+    .app-page-logo {
+        padding: 10px;
+        width: 15%;
+    }
+}
+@media only screen and (min-width: 1300px) {
+    .app-page-logo {
+        padding: 10px;
+        width: 10%;
+    }
+}
+@media only screen and (min-width: 1000px) {
+    .clock {
+        display: flex !important;
+        justify-content: flex-start !important;
+        width: 35% !important;
+    }
+    .menu {
+        width: 35% !important;
+        display: flex !important;
+        justify-content: flex-end !important;
+    }
+
+}
+@media only screen and (min-width: 460px) {
+    .printers-status {
+        margin-top: 90px;
+    }
+}
+@media only screen and (min-width: 670px) {
+    .printers-status {
+        margin-top: 100px;
+    }
+}
+@media only screen and (min-width: 800px) {
+    .printers-status {
+        margin-top: 115px;
+    }
+}
+@media only screen and (min-width: 1100px) {
+    .printers-status {
+        margin-top: 80px;
+    }
+}
+@media only screen and (min-width: 1300px) {
+    .printers-status {
+        margin-top: 70px;
+    }
+}
+@media only screen and (min-width: 1800px) {
+    .printers-status {
+        margin-top: 80px;
+    }
+}
+@media only screen and (min-width: 1100px) {
+    .printers-status {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .printer-container {
+        width: 45%;
+    }
+    .succes-alert {
+        height: 80px;
+        width: 35%;
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 1.5rem;
+        z-index: 10;
+    }
+}
+@media only screen and (min-width: 1500px) {
+    .printers-status {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .printer-container {
+        width: 30%;
+    }
+}
+@media only screen and (max-height: 550px) {
+    .addPrinterForm {
+        margin-top: 0px;
+        padding-top: 120px;
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+    }
+}
+@media only screen and (max-height: 400px) {
+    .addPrinterForm {
+        margin-top: 0px;
+        padding-top: 160px;
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
     }
 }
