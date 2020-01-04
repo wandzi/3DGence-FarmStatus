@@ -9,7 +9,7 @@ In this project you can add printers to the list with an informations like print
 
 I connected this app to Firebase, so every co-worker has his account and we can easily see what is printing and where and which print is going to end.
 
-### To try it out visit http://www.3dgence.mwandzel.pl/
+### To try it out - visit http://www.3dgence.mwandzel.pl/
 
 E-mail: test@3dgence.com
 Password: test123
