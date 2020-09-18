@@ -2,7 +2,7 @@
 ### 3DGence FarmStatus (JS + Firebase) 
  
 My application helps me and my fellow workers organize better workflow at our job as a 3D Printing Specialist.
-We're responsible for 42 machines that have to be make use.
+We're responsible for 70 machines that have to be make use.
 
 In this project you can add printers to the list with an informations like printer number, printer module (depends on material that printer is printing), the name of 3D printout and printing hours.
 3DGence-FarmStatus is counting time to the end of the print and pushing notification. The shortest print is on the top of the list.
